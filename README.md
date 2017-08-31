@@ -14,7 +14,7 @@ I propose such a solution as follows:
 - Introduce a new TLV type called MLE Message Extension TLV.
 - The value of this TLV comprises two 16-bit values: one representing the total byte length of the payload of this MLE message, the other representing the total byte length of the unfragmented MLE message payload. This TLV must be included in each MLE message composing a fragmented MLE message.
 
-![proposed-thread-mle-extension-tlv](https://github.com/mog96/curis-2017-poster/blob/master/diagrams/proposed-thread-mle-extension-tlv/proposed-thread-mle-extension-tlv.jpg)
+![proposed-thread-mle-message-extension-tlv](https://github.com/mog96/curis-2017-poster/blob/master/diagrams/proposed-thread-mle-message-extension-tlv/proposed-thread-mle-message-extension-tlv.jpg)
 
 - The receiver will be able to stitch together the complete MLE message from fragment messages based on the type of the MLE message and the source address of the packet containing it.
 - An extended MLE message can only be fragmented on the boundary of a TLV, meaning that each composing MLE message must contain full TLVs.
