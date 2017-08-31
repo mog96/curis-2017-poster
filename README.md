@@ -12,6 +12,7 @@ It seems the only way to ensure that an MLE message does not exceed the IPv6 MTU
 
 I propose such a solution as follows:
 - Introduce a new TLV type called MLE Extension TLV.
+- The value of this TLV comprises two 16-bit values: one representing the total byte length of the payload of this MLE message, the other representing the total byte length of the unfragmented MLE message payload. This TLV must be included in each MLE message composing a fragmented MLE message.
 ```
 +--------------+--------------+-----------------------------------------------------------+
 |              |              |                           Value                           |
@@ -19,7 +20,6 @@ I propose such a solution as follows:
 |              |              |  this message payload len   |  total message payload len  |
 +--- 8 bits ---+--- 8 bits ---+---------- 16 bits ----------+---------- 16 bits ----------+
 ```
-- The value of this TLV comprises two 16-bit values: one representing the total byte length of the payload of this MLE message, the other representing the total byte length of the unfragmented MLE message payload. This TLV must be included in each MLE message composing a fragmented MLE message.
 - The receiver will be able to stitch together the complete MLE message from fragment messages based on the type of the MLE message and the source address of the packet containing it.
 - An extended MLE message can only be fragmented on the boundary of a TLV, meaning that each composing MLE message must contain full TLVs.
 - This implies that the maximum length of a TLV is a single MLE message payload (IPv6 MTU minus one byte for the MLE message command type, shown in the MLE message diagram above). TLVs nested within TLVs (see the TLV diagram in the [poster](https://github.com/mog96/curis-2017-poster/blob/master/curis-poster_mateo-garcia.pdf)) must be composed with the maximum length of the outermost TLV in mind.
