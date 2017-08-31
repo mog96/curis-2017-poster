@@ -1,13 +1,15 @@
 # Stanford CURIS 2017 Poster
+## *Bringing IP Networking to the Internet of Things*
 [Poster](https://github.com/mog96/curis-2017-poster/blob/master/curis-poster_mateo-garcia.pdf) for the Stanford CURIS 2017 end-of-summer poster session on August 31, 2017.
 
---
+---
 
 Missing from the poster as it was presented is a proposed solution to the issue of unbounded MLE message length in the [Thread](https://www.threadgroup.org/ThreadSpec) protocol. As is stated in the poster under "Findings on MLE Using Type-Length-Value (TLV) Structures":
 
 > According to the authors of the specification, the implied [MLE message length] limit is the maximum transmission unit (MTU) of IPv6 (Layer 3) over IEEE 802.15.4 as outlined in the RFC document where 6LoWPAN is defined. This is confusing, however, because MLE messages are sent using the User Datagram Protocol (Layer 4), which sits on top of IPv6 and technically has its own, larger MTU that is unrelated to that of IPv6.
 
 As is shown in the poster, an MLE message is composed as follows:
+
 ![thread-mle-message-unbounded-length](https://github.com/mog96/curis-2017-poster/blob/master/diagrams/thread-mle-message-unbounded-length.jpg)
 
 It seems the only way to ensure that an MLE message does not exceed the IPv6 MTU in length is to fragment messages that do exceed the MTU into multiple MTU-sized messages.
